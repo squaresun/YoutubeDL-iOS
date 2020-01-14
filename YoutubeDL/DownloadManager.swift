@@ -39,7 +39,7 @@ class DownloadManager {
         queue.async {
             playlist.state = .Loading
             YDL_playlistDataForUrl(playlist.url, { (data) in
-                print("Have playlist data: \(data)")
+                print("Have playlist data: \(String(describing: data))")
                 let type = data!["type"]! as! String
                 let attrs = data!["data"]! as! [String: String]
                 
@@ -47,7 +47,7 @@ class DownloadManager {
                     playlist.id = attrs["id"]
                     playlist.title = attrs["title"]!
                     DispatchQueue.main.async(execute: onUpdate)
-                    print("Updated playlist attrs \(playlist.id) \(playlist.title)")
+                    print("Updated playlist attrs \(String(describing: playlist.id)) \(String(describing: playlist.title))")
                 } else if type == "entry" {
                     let video = Video(id: attrs["id"]!, title: attrs["title"]!)
                     playlist.addVideo(video: video)

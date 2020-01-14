@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class VideoViewCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!

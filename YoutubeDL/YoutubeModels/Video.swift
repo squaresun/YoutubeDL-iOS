@@ -78,7 +78,7 @@ final class Video : NSObject, NSCoding {
     class func fromJson(json: [String: AnyObject]) -> Video {
         print("Deserialize from json! \(json)")
         let video = Video(id: json["id"]! as! String, title: json["title"]! as! String)
-        video.duration = Int(json["duration"]! as! NSNumber)
+        video.duration = Int(truncating: json["duration"]! as! NSNumber)
         return video
     }
 

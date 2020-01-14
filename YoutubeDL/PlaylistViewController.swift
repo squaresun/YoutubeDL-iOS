@@ -10,7 +10,6 @@ import UIKit
 import AVKit
 import AVFoundation
 import Dispatch
-import WebImage
 
 class PlaylistViewController: UITableViewController {
 
@@ -73,7 +72,7 @@ class PlaylistViewController: UITableViewController {
 
                 let controller = segue.destination as! AVPlayerViewController
                 
-                /// <#Description#>
+                /// Description
                 let player = AVPlayer(url: playerUrl(video: video))
                 if video.watchedPosition > 0 {
                     player.seek(to: CMTime(seconds: Double(video.watchedPosition), preferredTimescale: 1))
@@ -94,10 +93,9 @@ class PlaylistViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! VideoViewCell
-        
-        let video = playlist!.videos[indexPath.row]
-        cell.updateFrom(video: video)
-        
+        if let video = playlist?.videos[indexPath.row] {
+            cell.updateFrom(video: video)
+        }
         return cell
     }
     
@@ -120,7 +118,7 @@ class PlaylistViewController: UITableViewController {
         return true
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             playlist?.videos[indexPath.row].deleteFile()
             tableView.reloadData()

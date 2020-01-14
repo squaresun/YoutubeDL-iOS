@@ -31,7 +31,7 @@ class DataStore {
     }
     
     func remove(playlist: Playlist) {
-        playlists.remove(at: playlists.index(of: playlist)!)
+        playlists.remove(at: playlists.firstIndex(of: playlist)!)
         saveToDisk()
     }
     

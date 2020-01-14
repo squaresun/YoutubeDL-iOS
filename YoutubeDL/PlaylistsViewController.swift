@@ -11,8 +11,8 @@ class PlaylistsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        addListFromString(stringUrl: "https://www.youtube.com/playlist?list=PLBsP89CPrMeMKjHnLfO3WAhiOOxiv5Xqo")
-//        addListFromString(stringUrl: "https://www.youtube.com/watch?v=8GkqkqCini0&list=PLH-huzMEgGWDSuoidhR6uj3-sb_FAEt0A")
+        addListFromString(stringUrl: "https://www.youtube.com/playlist?list=PLBsP89CPrMeMKjHnLfO3WAhiOOxiv5Xqo")
+        addListFromString(stringUrl: "https://www.youtube.com/watch?v=8GkqkqCini0&list=PLH-huzMEgGWDSuoidhR6uj3-sb_FAEt0A")
         
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem
@@ -50,13 +50,13 @@ class PlaylistsViewController: UITableViewController {
         update()
     }
     
-    func insertNewObject(_ sender: Any) {
-        let alert = UIAlertController(title: "Add Playlist", message: "Youtube playlist URL", preferredStyle: UIAlertControllerStyle.alert)
+    @objc func insertNewObject(_ sender: Any) {
+        let alert = UIAlertController(title: "Add Playlist", message: "Youtube playlist URL", preferredStyle: UIAlertController.Style.alert)
         alert.addTextField { (textField) in
             textField.placeholder = "https://www.youtube.com/playlist?list=PLBsP89CPrMeMKjHnLfO3WAhiOOxiv5Xqo"
         }
 
-        alert.addAction(UIAlertAction(title: "Add", style: UIAlertActionStyle.default) { (action) in
+        alert.addAction(UIAlertAction(title: "Add", style: UIAlertAction.Style.default) { (action) in
             self.addListFromString(stringUrl: alert.textFields![0].text!)
         })
 
@@ -108,7 +108,7 @@ class PlaylistsViewController: UITableViewController {
         return true
     }
 
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let playlist = objects[indexPath.row]
             playlist.deleteFiles()

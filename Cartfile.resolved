@@ -1,2 +1,2 @@
-github "rs/SDWebImage" "3.8.2"
-github "rg3/youtube-dl" "2016.10.07"
+github "SDWebImage/SDWebImage" "5.4.2"
+github "rg3/youtube-dl" "2020.01.01"
